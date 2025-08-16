@@ -1,133 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>House Login & Register</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stylish Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
     body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(to top, #87CEEB, #ffffff);
-      font-family: Arial, sans-serif;
+      display:flex;justify-content:center;align-items:center;
+      min-height:100vh;background:#000;overflow:hidden;perspective:1000px;
     }
-
-    .house {
-      position: relative;
-      width: 350px;
-      background: #fff;
-      border: 5px solid #333;
-      padding: 40px 20px 20px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    #particles-js{position:absolute;width:100%;height:100%;z-index:1;}
+    .container {width:100%;max-width:380px;padding:20px;position:relative;z-index:10;}
+    .form-box {
+      background:rgba(0,0,0,0.7);border-radius:24px;padding:35px;
+      box-shadow:0 8px 24px rgba(0,212,255,0.4), inset 0 0 16px rgba(0,212,255,0.2);
+      border:1px solid rgba(0,212,255,0.3);
+      transform-style:preserve-3d;opacity:0;transform:rotateX(20deg) translateY(100px);
+      animation:formEntrance 1.5s cubic-bezier(0.68,-0.55,0.27,1.55) forwards;
     }
-
-    /* Roof */
-    .house::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      left: 0;
-      width: 0;
-      height: 0;
-      border-left: 180px solid transparent;
-      border-right: 180px solid transparent;
-      border-bottom: 120px solid #ff6347;
-    }
-
+    @keyframes formEntrance {0%{opacity:0;transform:rotateX(20deg) translateY(100px);}100%{opacity:1;transform:rotateX(0) translateY(0);}}
     h2 {
-      margin: 20px 0;
-      font-size: 24px;
-      color: #333;
+      color:#00d4ff;text-align:center;margin-bottom:10px;font-family:'Cinzel',serif;
+      font-weight:700;letter-spacing:3px;text-shadow:0 0 10px rgba(0,212,255,0.5);
+      animation:glow 2s infinite alternate;font-size:24px;
     }
-
-    input {
-      width: 85%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 2px solid #333;
-      border-radius: 5px;
-      font-size: 16px;
+    @keyframes glow {from{text-shadow:0 0 5px rgba(0,212,255,0.5);}to{text-shadow:0 0 15px rgba(0,212,255,0.8);}}
+    p{color:rgba(0,212,255,0.7);text-align:center;margin-bottom:20px;font-size:14px;}
+    .input-group{position:relative;margin-bottom:22px;}
+    .input-field{
+      width:100%;padding:12px 35px 12px 0;font-size:15px;color:#00d4ff;
+      background:transparent;border:none;border-bottom:1px solid rgba(0,212,255,0.3);outline:none;
     }
-
-    .password-container {
-      position: relative;
-      width: 85%;
-      margin: auto;
+    .input-group label {
+      position:absolute;top:12px;left:0;color:rgba(0,212,255,0.7);
+      font-size:15px;pointer-events:none;transition:0.3s;
     }
-
-    .password-container input {
-      width: 100%;
-      padding-right: 40px;
+    .input-field:focus ~ label,.input-field:valid ~ label{
+      top:-12px;font-size:12px;color:#00d4ff;text-shadow:0 0 5px rgba(0,212,255,0.5);
     }
-
-    .password-container .toggle-password {
-      position: absolute;
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      cursor: pointer;
-      font-size: 20px;
-      color: #333;
+    .eye-icon{
+      position:absolute;right:0;top:50%;transform:translateY(-50%);
+      cursor:pointer;color:#00d4ff;font-size:16px;
     }
-
-    button {
-      width: 90%;
-      padding: 12px;
-      margin-top: 15px;
-      background: #ff6347;
-      color: #fff;
-      border: none;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
+    .remember-forgot{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-size:13px;}
+    .remember input{margin-right:5px;accent-color:#00d4ff;}
+    .forgot{color:rgba(0,212,255,0.8);text-decoration:none;transition:0.3s;}
+    .forgot:hover{color:#00d4ff;}
+    .btn{
+      width:100%;padding:12px 0;background:#000;border:1px solid #00d4ff;
+      border-radius:25px;color:#00d4ff;font-size:15px;font-weight:500;letter-spacing:2px;
+      cursor:pointer;position:relative;overflow:hidden;font-family:'Cinzel',serif;margin-top:5px;
     }
-
-    button:hover {
-      background: #e5533d;
-    }
-
-    p {
-      margin-top: 15px;
-      font-size: 14px;
-    }
-
-    a {
-      color: #ff6347;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
+    .btn:hover{background:rgba(0,212,255,0.1);box-shadow:0 0 15px rgba(0,212,255,0.5);}
+    .toggle-link{text-align:center;margin-top:15px;color:rgba(0,212,255,0.7);font-size:13px;}
+    .toggle-link a{color:#00d4ff;text-decoration:none;font-weight:500;}
+    .form {display:none;}
+    .form.active {display:block;animation:fadeIn 0.5s;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
   </style>
 </head>
 <body>
-  <div class="house">
-    <h2>Login</h2>
-    <form>
-      <input type="text" placeholder="Username" required>
-      <div class="password-container">
-        <input type="password" id="password" placeholder="Password" required>
-        <span class="toggle-password" onclick="togglePassword()">👁️</span>
-      </div>
-      <button type="submit">Login</button>
-      <p>Don't have an account? <a href="#">Register</a></p>
-    </form>
+  <div id="particles-js"></div>
+  <div class="container">
+    <div class="form-box">
+      <!-- Login Form -->
+      <form id="loginForm" class="form active">
+        <h2>Login</h2><p>Welcome Back</p>
+        <div class="input-group">
+          <input type="text" id="loginUser" required class="input-field">
+          <label for="loginUser">Username</label>
+        </div>
+        <div class="input-group">
+          <input type="password" id="loginPass" required class="input-field">
+          <label for="loginPass">Password</label>
+          <i class="fa-solid fa-eye eye-icon" onclick="togglePass('loginPass',this)"></i>
+        </div>
+        <div class="remember-forgot">
+          <label><input type="checkbox"> Remember me</label>
+          <a href="#" class="forgot">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn">SIGN IN</button>
+        <div class="toggle-link">Don't have an account? <a href="#" onclick="showForm('registerForm')">Register</a></div>
+      </form>
+      <!-- Register Form -->
+      <form id="registerForm" class="form">
+        <h2>Register</h2><p>Create New Account</p>
+        <div class="input-group">
+          <input type="text" id="regUser" required class="input-field">
+          <label for="regUser">Username</label>
+        </div>
+        <div class="input-group">
+          <input type="email" id="regEmail" required class="input-field">
+          <label for="regEmail">Email</label>
+        </div>
+        <div class="input-group">
+          <input type="password" id="regPass" required class="input-field">
+          <label for="regPass">Password</label>
+          <i class="fa-solid fa-eye eye-icon" onclick="togglePass('regPass',this)"></i>
+        </div>
+        <button type="submit" class="btn">SIGN UP</button>
+        <div class="toggle-link">Already have an account? <a href="#" onclick="showForm('loginForm')">Login</a></div>
+      </form>
+    </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    function togglePassword() {
-      const password = document.getElementById("password");
-      password.type = password.type === "password" ? "text" : "password";
+    // toggle between login/register
+    function showForm(id){
+      document.querySelectorAll('.form').forEach(f=>f.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
     }
+    // toggle password visibility
+    function togglePass(id,el){
+      const input=document.getElementById(id);
+      if(input.type==="password"){
+        input.type="text";
+        el.classList.remove("fa-eye");
+        el.classList.add("fa-eye-slash");
+      } else {
+        input.type="password";
+        el.classList.remove("fa-eye-slash");
+        el.classList.add("fa-eye");
+      }
+    }
+    // particles
+    particlesJS('particles-js',{
+      particles:{number:{value:100,density:{enable:true,value_area:800}},
+      color:{value:"#00d4ff"},shape:{type:"circle"},opacity:{value:0.7,random:true},
+      size:{value:4,random:true},line_linked:{enable:true,distance:150,color:"#00d4ff",opacity:0.6,width:1},
+      move:{enable:true,speed:2}},interactivity:{events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:true,mode:"push"}},modes:{repulse:{distance:100,duration:0.4},push:{particles_nb:4}}},retina_detect:true});
   </script>
 </body>
 </html>
