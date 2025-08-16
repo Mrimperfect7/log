@@ -6,309 +6,125 @@
   <title>Stylish Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+    * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #000000, #000000, #000000);
-      overflow: hidden;
-      perspective: 1000px;
+      display:flex;justify-content:center;align-items:center;
+      min-height:100vh;background:#000;overflow:hidden;perspective:1000px;
     }
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-    .container {
-      width: 100%;
-      max-width: 360px;
-      padding: 20px;
-      position: relative;
-      z-index: 10;
-      perspective: 1000px;
-    }
+    #particles-js{position:absolute;width:100%;height:100%;z-index:1;}
+    .container {width:100%;max-width:380px;padding:20px;position:relative;z-index:10;}
     .form-box {
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 24px;
-      padding: 40px;
-      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4), inset 0 0 16px rgba(0, 212, 255, 0.2);
-      border: 1px solid rgba(0, 212, 255, 0.3);
-      transform-style: preserve-3d;
-      animation: formEntrance 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-      opacity: 0;
-      transform: rotateX(20deg) translateY(100px);
+      background:rgba(0,0,0,0.7);border-radius:24px;padding:35px;
+      box-shadow:0 8px 24px rgba(0,212,255,0.4), inset 0 0 16px rgba(0,212,255,0.2);
+      border:1px solid rgba(0,212,255,0.3);
+      transform-style:preserve-3d;opacity:0;transform:rotateX(20deg) translateY(100px);
+      animation:formEntrance 1.5s cubic-bezier(0.68,-0.55,0.27,1.55) forwards;
     }
-    @keyframes formEntrance {
-      0% { opacity: 0; transform: rotateX(20deg) translateY(100px); }
-      50% { opacity: 1; }
-      100% { opacity: 1; transform: rotateX(0deg) translateY(0); }
-    }
+    @keyframes formEntrance {0%{opacity:0;transform:rotateX(20deg) translateY(100px);}100%{opacity:1;transform:rotateX(0) translateY(0);}}
     h2 {
-      color: #00d4ff;
-      text-align: center;
-      margin-bottom: 10px;
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-      animation: glow 2s infinite alternate;
-      font-size: 24px;
+      color:#00d4ff;text-align:center;margin-bottom:10px;font-family:'Cinzel',serif;
+      font-weight:700;letter-spacing:3px;text-shadow:0 0 10px rgba(0,212,255,0.5);
+      animation:glow 2s infinite alternate;font-size:24px;
     }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px rgba(0, 212, 255, 0.5); }
-      to { text-shadow: 0 0 15px rgba(0, 212, 255, 0.8); }
-    }
-    p {
-      color: rgba(0, 212, 255, 0.7);
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 14px;
-      letter-spacing: 1px;
-    }
-    .input-group {
-      position: relative;
-      margin-bottom: 25px;
-      transform: translateZ(10px);
-    }
-    .input-field {
-      width: 100%;
-      padding: 12px 0;
-      font-size: 15px;
-      color: #00d4ff;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(0, 212, 255, 0.3);
-      outline: none;
-      transition: 0.3s;
-      z-index: 1;
-      position: relative;
-    }
-    .input-field:focus { border-bottom-color: transparent; }
-    .glow-line {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg,transparent,rgba(0, 212, 255, 0.5),#00d4ff,rgba(0, 212, 255, 0.5),transparent);
-      transition: 0.4s;
-      z-index: 0;
-    }
-    .input-field:focus ~ .glow-line {
-      width: 100%;
-      box-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
-      animation: shimmer 2s infinite;
-    }
-    @keyframes shimmer {
-      0% { background-position: -100% 0; }
-      100% { background-position: 200% 0; }
+    @keyframes glow {from{text-shadow:0 0 5px rgba(0,212,255,0.5);}to{text-shadow:0 0 15px rgba(0,212,255,0.8);}}
+    p{color:rgba(0,212,255,0.7);text-align:center;margin-bottom:20px;font-size:14px;}
+    .input-group{position:relative;margin-bottom:22px;}
+    .input-field{
+      width:100%;padding:12px 35px 12px 0;font-size:15px;color:#00d4ff;
+      background:transparent;border:none;border-bottom:1px solid rgba(0,212,255,0.3);outline:none;
     }
     .input-group label {
-      position: absolute;
-      top: 12px;
-      left: 0;
-      color: rgba(0, 212, 255, 0.7);
-      font-size: 15px;
-      pointer-events: none;
-      transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      position:absolute;top:12px;left:0;color:rgba(0,212,255,0.7);
+      font-size:15px;pointer-events:none;transition:0.3s;
     }
-    .input-field:focus ~ label,
-    .input-field:valid ~ label {
-      top: -12px;
-      font-size: 12px;
-      color: #00d4ff;
-      text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
-      letter-spacing: 1px;
+    .input-field:focus ~ label,.input-field:valid ~ label{
+      top:-12px;font-size:12px;color:#00d4ff;text-shadow:0 0 5px rgba(0,212,255,0.5);
     }
-    .remember-forgot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-      font-size: 13px;
+    .eye-icon{
+      position:absolute;right:0;top:50%;transform:translateY(-50%);
+      cursor:pointer;color:#00d4ff;font-size:16px;
     }
-    .remember { display: flex; align-items: center; }
-    .remember input { margin-right: 5px; accent-color: #00d4ff; }
-    .remember label, .forgot { color: rgba(0, 212, 255, 0.8); font-size: 13px; }
-    .forgot {
-      text-decoration: none;
-      transition: 0.3s;
-      position: relative;
+    .remember-forgot{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-size:13px;}
+    .remember input{margin-right:5px;accent-color:#00d4ff;}
+    .forgot{color:rgba(0,212,255,0.8);text-decoration:none;transition:0.3s;}
+    .forgot:hover{color:#00d4ff;}
+    .btn{
+      width:100%;padding:12px 0;background:#000;border:1px solid #00d4ff;
+      border-radius:25px;color:#00d4ff;font-size:15px;font-weight:500;letter-spacing:2px;
+      cursor:pointer;position:relative;overflow:hidden;font-family:'Cinzel',serif;margin-top:5px;
     }
-    .forgot:hover { color: #00d4ff; text-shadow: 0 0 5px rgba(0, 212, 255, 0.5); }
-    .forgot::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: -2px;
-      left: 0;
-      background-color: #00d4ff;
-      transition: 0.3s;
-    }
-    .forgot:hover::after {
-      width: 100%;
-      box-shadow: 0 0 5px rgba(0, 212, 255, 0.7);
-    }
-    .login-btn {
-      width: 100%;
-      padding: 12px 0;
-      background: #000;
-      border: 1px solid #00d4ff;
-      border-radius: 25px;
-      color: #00d4ff;
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      cursor: pointer;
-      transition: all 0.5s;
-      position: relative;
-      overflow: hidden;
-      transform: translateZ(20px);
-      font-family: 'Cinzel', serif;
-      margin-bottom: 10px;
-    }
-    .login-btn span { position: relative; z-index: 1; transition: 0.3s; }
-    .btn-glow {
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg,transparent,rgba(0, 212, 255, 0.2),rgba(0, 212, 255, 0.3),rgba(0, 212, 255, 0.2),transparent);
-      transition: 0.5s;
-    }
-    .login-btn:hover .btn-glow { left: 100%; }
-    .login-btn:hover {
-      background: rgba(0, 212, 255, 0.1);
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), inset 0 0 10px rgba(0, 212, 255, 0.3);
-      transform: translateZ(20px) scale(1.05);
-    }
-    .login-btn:hover span { text-shadow: 0 0 5px rgba(0, 212, 255, 0.7); }
-    .login-btn:active { transform: translateZ(20px) scale(0.98); }
-    .signup-link {
-      text-align: center;
-      margin-top: 20px;
-      color: rgba(0, 212, 255, 0.7);
-      font-size: 13px;
-    }
-    .signup-link a {
-      color: #00d4ff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-      position: relative;
-    }
-    .signup-link a:hover { text-shadow: 0 0 5px rgba(0, 212, 255, 0.7); }
-    .signup-link a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 1px;
-      bottom: -2px;
-      left: 0;
-      background-color: #00d4ff;
-      transition: 0.3s;
-    }
-    .signup-link a:hover::after {
-      width: 100%;
-      box-shadow: 0 0 5px rgba(0, 212, 255, 0.7);
-    }
-    /* 3D hover effect */
-    .form-box:hover {
-      transform: rotateX(5deg) rotateY(5deg);
-      transition: transform 0.5s ease;
-    }
-    .input-group, .remember-forgot, .login-btn, .signup-link {
-      animation: fadeInUp 0.5s forwards;
-      opacity: 0;
-    }
-    .input-group:nth-child(1) { animation-delay: 0.6s; }
-    .input-group:nth-child(2) { animation-delay: 0.8s; }
-    .remember-forgot { animation-delay: 1s; }
-    .login-btn { animation-delay: 1.2s; }
-    .signup-link { animation-delay: 1.4s; }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .btn:hover{background:rgba(0,212,255,0.1);box-shadow:0 0 15px rgba(0,212,255,0.5);}
+    .toggle-link{text-align:center;margin-top:15px;color:rgba(0,212,255,0.7);font-size:13px;}
+    .toggle-link a{color:#00d4ff;text-decoration:none;font-weight:500;}
+    .form {display:none;}
+    .form.active {display:block;animation:fadeIn 0.5s;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
   <div class="container">
     <div class="form-box">
-      <h2>Login</h2>
-      <p>Welcome Back</p>
-      <form>
+      <!-- Login Form -->
+      <form id="loginForm" class="form active">
+        <h2>Login</h2><p>Welcome Back</p>
         <div class="input-group">
-          <input type="text" id="username" required class="input-field">
-          <label for="username">Username</label>
-          <div class="glow-line"></div>
+          <input type="text" id="loginUser" required class="input-field">
+          <label for="loginUser">Username</label>
         </div>
         <div class="input-group">
-          <input type="password" id="password" required class="input-field">
-          <label for="password">Password</label>
-          <div class="glow-line"></div>
+          <input type="password" id="loginPass" required class="input-field">
+          <label for="loginPass">Password</label>
+          <span class="eye-icon" onclick="togglePass('loginPass',this)">👁</span>
         </div>
         <div class="remember-forgot">
-          <div class="remember">
-            <input type="checkbox" id="remember">
-            <label for="remember">Remember me</label>
-          </div>
+          <label><input type="checkbox"> Remember me</label>
           <a href="#" class="forgot">Forgot Password?</a>
         </div>
-        <button type="submit" class="login-btn">
-          <span>SIGN IN</span>
-          <div class="btn-glow"></div>
-        </button>
-        <div class="signup-link">
-          Don't have an account? <a href="#">Register</a>
+        <button type="submit" class="btn">SIGN IN</button>
+        <div class="toggle-link">Don't have an account? <a href="#" onclick="showForm('registerForm')">Register</a></div>
+      </form>
+      <!-- Register Form -->
+      <form id="registerForm" class="form">
+        <h2>Register</h2><p>Create New Account</p>
+        <div class="input-group">
+          <input type="text" id="regUser" required class="input-field">
+          <label for="regUser">Username</label>
         </div>
+        <div class="input-group">
+          <input type="email" id="regEmail" required class="input-field">
+          <label for="regEmail">Email</label>
+        </div>
+        <div class="input-group">
+          <input type="password" id="regPass" required class="input-field">
+          <label for="regPass">Password</label>
+          <span class="eye-icon" onclick="togglePass('regPass',this)">👁</span>
+        </div>
+        <button type="submit" class="btn">SIGN UP</button>
+        <div class="toggle-link">Already have an account? <a href="#" onclick="showForm('loginForm')">Login</a></div>
       </form>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      particlesJS('particles-js', {
-        "particles": {
-          "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
-          "color": { "value": "#00d4ff" },
-          "shape": { "type": "circle" },
-          "opacity": { "value": 0.8, "random": true,
-            "anim": { "enable": true, "speed": 1, "opacity_min": 0.4, "sync": false } },
-          "size": { "value": 5, "random": true,
-            "anim": { "enable": true, "speed": 2, "size_min": 1, "sync": false } },
-          "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.6, "width": 1.5 },
-          "move": { "enable": true, "speed": 2, "direction": "none", "random": true,
-            "straight": false, "out_mode": "out", "bounce": false,
-            "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 } }
-        },
-        "interactivity": {
-          "detect_on": "canvas",
-          "events": {
-            "onhover": { "enable": true, "mode": "repulse" },
-            "onclick": { "enable": true, "mode": "push" },
-            "resize": true
-          },
-          "modes": {
-            "repulse": { "distance": 100, "duration": 0.4 },
-            "push": { "particles_nb": 4 }
-          }
-        },
-        "retina_detect": true
-      });
-    });
+    // toggle between login/register
+    function showForm(id){
+      document.querySelectorAll('.form').forEach(f=>f.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+    // toggle password visibility
+    function togglePass(id,el){
+      const input=document.getElementById(id);
+      if(input.type==="password"){input.type="text";el.textContent="🙈";}
+      else{input.type="password";el.textContent="👁";}
+    }
+    // particles
+    particlesJS('particles-js',{
+      particles:{number:{value:100,density:{enable:true,value_area:800}},
+      color:{value:"#00d4ff"},shape:{type:"circle"},opacity:{value:0.7,random:true},
+      size:{value:4,random:true},line_linked:{enable:true,distance:150,color:"#00d4ff",opacity:0.6,width:1},
+      move:{enable:true,speed:2}},interactivity:{events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:true,mode:"push"}},modes:{repulse:{distance:100,duration:0.4},push:{particles_nb:4}}},retina_detect:true});
   </script>
 </body>
 </html>
