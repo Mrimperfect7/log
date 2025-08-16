@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stylish Portal</title>
+  <title>Stylish Portal - House Shape</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
@@ -15,14 +14,32 @@
     }
     #particles-js{position:absolute;width:100%;height:100%;z-index:1;}
     .container {width:100%;max-width:380px;padding:20px;position:relative;z-index:10;}
+    
+    /* House box */
     .form-box {
-      background:rgba(0,0,0,0.7);border-radius:24px;padding:35px;
+      position:relative;
+      background:rgba(0,0,0,0.75);
+      border-radius:0 0 24px 24px;
+      padding:35px 25px 25px 25px;
       box-shadow:0 8px 24px rgba(0,212,255,0.4), inset 0 0 16px rgba(0,212,255,0.2);
       border:1px solid rgba(0,212,255,0.3);
-      transform-style:preserve-3d;opacity:0;transform:rotateX(20deg) translateY(100px);
-      animation:formEntrance 1.5s cubic-bezier(0.68,-0.55,0.27,1.55) forwards;
+      opacity:0;transform:translateY(100px);
+      animation:formEntrance 1.5s ease forwards;
     }
-    @keyframes formEntrance {0%{opacity:0;transform:rotateX(20deg) translateY(100px);}100%{opacity:1;transform:rotateX(0) translateY(0);}}
+    /* Roof */
+    .form-box::before {
+      content:"";
+      position:absolute;
+      top:-60px;left:50%;
+      transform:translateX(-50%);
+      width:0;height:0;
+      border-left:190px solid transparent;
+      border-right:190px solid transparent;
+      border-bottom:60px solid rgba(0,0,0,0.85);
+      filter:drop-shadow(0 0 15px rgba(0,212,255,0.6));
+    }
+    @keyframes formEntrance {to{opacity:1;transform:translateY(0);}}
+    
     h2 {
       color:#00d4ff;text-align:center;margin-bottom:10px;font-family:'Cinzel',serif;
       font-weight:700;letter-spacing:3px;text-shadow:0 0 10px rgba(0,212,255,0.5);
@@ -30,6 +47,7 @@
     }
     @keyframes glow {from{text-shadow:0 0 5px rgba(0,212,255,0.5);}to{text-shadow:0 0 15px rgba(0,212,255,0.8);}}
     p{color:rgba(0,212,255,0.7);text-align:center;margin-bottom:20px;font-size:14px;}
+    
     .input-group{position:relative;margin-bottom:22px;}
     .input-field{
       width:100%;padding:12px 35px 12px 0;font-size:15px;color:#00d4ff;
@@ -46,18 +64,23 @@
       position:absolute;right:0;top:50%;transform:translateY(-50%);
       cursor:pointer;color:#00d4ff;font-size:16px;
     }
+    .eye-icon:hover{color:#fff;text-shadow:0 0 6px #00d4ff;}
+    
     .remember-forgot{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;font-size:13px;}
     .remember input{margin-right:5px;accent-color:#00d4ff;}
     .forgot{color:rgba(0,212,255,0.8);text-decoration:none;transition:0.3s;}
     .forgot:hover{color:#00d4ff;}
+    
     .btn{
       width:100%;padding:12px 0;background:#000;border:1px solid #00d4ff;
       border-radius:25px;color:#00d4ff;font-size:15px;font-weight:500;letter-spacing:2px;
       cursor:pointer;position:relative;overflow:hidden;font-family:'Cinzel',serif;margin-top:5px;
     }
     .btn:hover{background:rgba(0,212,255,0.1);box-shadow:0 0 15px rgba(0,212,255,0.5);}
+    
     .toggle-link{text-align:center;margin-top:15px;color:rgba(0,212,255,0.7);font-size:13px;}
     .toggle-link a{color:#00d4ff;text-decoration:none;font-weight:500;}
+    
     .form {display:none;}
     .form.active {display:block;animation:fadeIn 0.5s;}
     @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
@@ -110,25 +133,20 @@
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    // toggle between login/register
     function showForm(id){
       document.querySelectorAll('.form').forEach(f=>f.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
-    // toggle password visibility
     function togglePass(id,el){
       const input=document.getElementById(id);
       if(input.type==="password"){
         input.type="text";
-        el.classList.remove("fa-eye");
-        el.classList.add("fa-eye-slash");
+        el.classList.replace("fa-eye","fa-eye-slash");
       } else {
         input.type="password";
-        el.classList.remove("fa-eye-slash");
-        el.classList.add("fa-eye");
+        el.classList.replace("fa-eye-slash","fa-eye");
       }
     }
-    // particles
     particlesJS('particles-js',{
       particles:{number:{value:100,density:{enable:true,value_area:800}},
       color:{value:"#00d4ff"},shape:{type:"circle"},opacity:{value:0.7,random:true},
