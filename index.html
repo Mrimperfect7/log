@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stylish Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     * {margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
     body {
@@ -75,7 +77,7 @@
         <div class="input-group">
           <input type="password" id="loginPass" required class="input-field">
           <label for="loginPass">Password</label>
-          <span class="eye-icon" onclick="togglePass('loginPass',this)">👁</span>
+          <i class="fa-solid fa-eye eye-icon" onclick="togglePass('loginPass',this)"></i>
         </div>
         <div class="remember-forgot">
           <label><input type="checkbox"> Remember me</label>
@@ -98,7 +100,7 @@
         <div class="input-group">
           <input type="password" id="regPass" required class="input-field">
           <label for="regPass">Password</label>
-          <span class="eye-icon" onclick="togglePass('regPass',this)">👁</span>
+          <i class="fa-solid fa-eye eye-icon" onclick="togglePass('regPass',this)"></i>
         </div>
         <button type="submit" class="btn">SIGN UP</button>
         <div class="toggle-link">Already have an account? <a href="#" onclick="showForm('loginForm')">Login</a></div>
@@ -116,8 +118,15 @@
     // toggle password visibility
     function togglePass(id,el){
       const input=document.getElementById(id);
-      if(input.type==="password"){input.type="text";el.textContent="🙈";}
-      else{input.type="password";el.textContent="👁";}
+      if(input.type==="password"){
+        input.type="text";
+        el.classList.remove("fa-eye");
+        el.classList.add("fa-eye-slash");
+      } else {
+        input.type="password";
+        el.classList.remove("fa-eye-slash");
+        el.classList.add("fa-eye");
+      }
     }
     // particles
     particlesJS('particles-js',{
