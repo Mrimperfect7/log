@@ -1,165 +1,314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Login & Register</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stylish Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
-
     body {
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(-45deg, #ff416c, #ff4b2b, #1e3c72, #2a5298);
-      background-size: 400% 400%;
-      animation: gradientBG 12s ease infinite;
-    }
-
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    .container {
-      width: 380px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 30px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #000000, #000000, #000000);
       overflow: hidden;
+      perspective: 1000px;
     }
-
-    h2 {
-      margin-bottom: 20px;
-      color: #fff;
-    }
-
-    .input-box {
-      position: relative;
-      margin: 15px 0;
-    }
-
-    .input-box input {
-      width: 100%;
-      padding: 12px 40px 12px 15px;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-      font-size: 15px;
-    }
-
-    .input-box i {
+    #particles-js {
       position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #555;
-    }
-
-    button {
       width: 100%;
-      padding: 12px;
+      height: 100%;
+      z-index: 1;
+    }
+    .container {
+      width: 100%;
+      max-width: 360px;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+      perspective: 1000px;
+    }
+    .form-box {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4), inset 0 0 16px rgba(0, 212, 255, 0.2);
+      border: 1px solid rgba(0, 212, 255, 0.3);
+      transform-style: preserve-3d;
+      animation: formEntrance 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+      opacity: 0;
+      transform: rotateX(20deg) translateY(100px);
+    }
+    @keyframes formEntrance {
+      0% { opacity: 0; transform: rotateX(20deg) translateY(100px); }
+      50% { opacity: 1; }
+      100% { opacity: 1; transform: rotateX(0deg) translateY(0); }
+    }
+    h2 {
+      color: #00d4ff;
+      text-align: center;
+      margin-bottom: 10px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+      animation: glow 2s infinite alternate;
+      font-size: 24px;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px rgba(0, 212, 255, 0.5); }
+      to { text-shadow: 0 0 15px rgba(0, 212, 255, 0.8); }
+    }
+    p {
+      color: rgba(0, 212, 255, 0.7);
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+      transform: translateZ(10px);
+    }
+    .input-field {
+      width: 100%;
+      padding: 12px 0;
+      font-size: 15px;
+      color: #00d4ff;
+      background: transparent;
       border: none;
-      border-radius: 8px;
-      background: #ff416c;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
+      border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+      outline: none;
+      transition: 0.3s;
+      z-index: 1;
+      position: relative;
+    }
+    .input-field:focus { border-bottom-color: transparent; }
+    .glow-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg,transparent,rgba(0, 212, 255, 0.5),#00d4ff,rgba(0, 212, 255, 0.5),transparent);
+      transition: 0.4s;
+      z-index: 0;
+    }
+    .input-field:focus ~ .glow-line {
+      width: 100%;
+      box-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -100% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .input-group label {
+      position: absolute;
+      top: 12px;
+      left: 0;
+      color: rgba(0, 212, 255, 0.7);
+      font-size: 15px;
+      pointer-events: none;
+      transition: 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    .input-field:focus ~ label,
+    .input-field:valid ~ label {
+      top: -12px;
+      font-size: 12px;
+      color: #00d4ff;
+      text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+      letter-spacing: 1px;
+    }
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 13px;
+    }
+    .remember { display: flex; align-items: center; }
+    .remember input { margin-right: 5px; accent-color: #00d4ff; }
+    .remember label, .forgot { color: rgba(0, 212, 255, 0.8); font-size: 13px; }
+    .forgot {
+      text-decoration: none;
+      transition: 0.3s;
+      position: relative;
+    }
+    .forgot:hover { color: #00d4ff; text-shadow: 0 0 5px rgba(0, 212, 255, 0.5); }
+    .forgot::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: #00d4ff;
       transition: 0.3s;
     }
-
-    button:hover {
-      background: #ff4b2b;
+    .forgot:hover::after {
+      width: 100%;
+      box-shadow: 0 0 5px rgba(0, 212, 255, 0.7);
     }
-
-    .toggle-link {
-      margin-top: 15px;
-      display: block;
-      color: #fff;
+    .login-btn {
+      width: 100%;
+      padding: 12px 0;
+      background: #000;
+      border: 1px solid #00d4ff;
+      border-radius: 25px;
+      color: #00d4ff;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 2px;
       cursor: pointer;
-      text-decoration: underline;
+      transition: all 0.5s;
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(20px);
+      font-family: 'Cinzel', serif;
+      margin-bottom: 10px;
     }
-
-    /* Hide register initially */
-    #registerForm {
-      display: none;
+    .login-btn span { position: relative; z-index: 1; transition: 0.3s; }
+    .btn-glow {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,transparent,rgba(0, 212, 255, 0.2),rgba(0, 212, 255, 0.3),rgba(0, 212, 255, 0.2),transparent);
+      transition: 0.5s;
+    }
+    .login-btn:hover .btn-glow { left: 100%; }
+    .login-btn:hover {
+      background: rgba(0, 212, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), inset 0 0 10px rgba(0, 212, 255, 0.3);
+      transform: translateZ(20px) scale(1.05);
+    }
+    .login-btn:hover span { text-shadow: 0 0 5px rgba(0, 212, 255, 0.7); }
+    .login-btn:active { transform: translateZ(20px) scale(0.98); }
+    .signup-link {
+      text-align: center;
+      margin-top: 20px;
+      color: rgba(0, 212, 255, 0.7);
+      font-size: 13px;
+    }
+    .signup-link a {
+      color: #00d4ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+      position: relative;
+    }
+    .signup-link a:hover { text-shadow: 0 0 5px rgba(0, 212, 255, 0.7); }
+    .signup-link a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: #00d4ff;
+      transition: 0.3s;
+    }
+    .signup-link a:hover::after {
+      width: 100%;
+      box-shadow: 0 0 5px rgba(0, 212, 255, 0.7);
+    }
+    /* 3D hover effect */
+    .form-box:hover {
+      transform: rotateX(5deg) rotateY(5deg);
+      transition: transform 0.5s ease;
+    }
+    .input-group, .remember-forgot, .login-btn, .signup-link {
+      animation: fadeInUp 0.5s forwards;
+      opacity: 0;
+    }
+    .input-group:nth-child(1) { animation-delay: 0.6s; }
+    .input-group:nth-child(2) { animation-delay: 0.8s; }
+    .remember-forgot { animation-delay: 1s; }
+    .login-btn { animation-delay: 1.2s; }
+    .signup-link { animation-delay: 1.4s; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-
+  <div id="particles-js"></div>
   <div class="container">
-    <!-- Login Form -->
-    <form id="loginForm">
+    <div class="form-box">
       <h2>Login</h2>
-      <div class="input-box">
-        <input type="email" placeholder="Email" required>
-      </div>
-      <div class="input-box">
-        <input type="password" id="loginPassword" placeholder="Password" required>
-        <i onclick="togglePassword('loginPassword', this)">👁️</i>
-      </div>
-      <button type="submit">Login</button>
-      <span class="toggle-link" onclick="showRegister()">Don’t have an account? Register</span>
-    </form>
-
-    <!-- Register Form -->
-    <form id="registerForm">
-      <h2>Register</h2>
-      <div class="input-box">
-        <input type="text" placeholder="Full Name" required>
-      </div>
-      <div class="input-box">
-        <input type="email" placeholder="Email" required>
-      </div>
-      <div class="input-box">
-        <input type="password" id="regPassword" placeholder="Password" required>
-        <i onclick="togglePassword('regPassword', this)">👁️</i>
-      </div>
-      <div class="input-box">
-        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-        <i onclick="togglePassword('confirmPassword', this)">👁️</i>
-      </div>
-      <button type="submit">Register</button>
-      <span class="toggle-link" onclick="showLogin()">Already have an account? Login</span>
-    </form>
+      <p>Welcome Back</p>
+      <form>
+        <div class="input-group">
+          <input type="text" id="username" required class="input-field">
+          <label for="username">Username</label>
+          <div class="glow-line"></div>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" required class="input-field">
+          <label for="password">Password</label>
+          <div class="glow-line"></div>
+        </div>
+        <div class="remember-forgot">
+          <div class="remember">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me</label>
+          </div>
+          <a href="#" class="forgot">Forgot Password?</a>
+        </div>
+        <button type="submit" class="login-btn">
+          <span>SIGN IN</span>
+          <div class="btn-glow"></div>
+        </button>
+        <div class="signup-link">
+          Don't have an account? <a href="#">Register</a>
+        </div>
+      </form>
+    </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    function togglePassword(id, icon) {
-      let input = document.getElementById(id);
-      if (input.type === "password") {
-        input.type = "text";
-        icon.textContent = "🙈";
-      } else {
-        input.type = "password";
-        icon.textContent = "👁️";
-      }
-    }
-
-    function showRegister() {
-      document.getElementById("loginForm").style.display = "none";
-      document.getElementById("registerForm").style.display = "block";
-    }
-
-    function showLogin() {
-      document.getElementById("registerForm").style.display = "none";
-      document.getElementById("loginForm").style.display = "block";
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+      particlesJS('particles-js', {
+        "particles": {
+          "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+          "color": { "value": "#00d4ff" },
+          "shape": { "type": "circle" },
+          "opacity": { "value": 0.8, "random": true,
+            "anim": { "enable": true, "speed": 1, "opacity_min": 0.4, "sync": false } },
+          "size": { "value": 5, "random": true,
+            "anim": { "enable": true, "speed": 2, "size_min": 1, "sync": false } },
+          "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.6, "width": 1.5 },
+          "move": { "enable": true, "speed": 2, "direction": "none", "random": true,
+            "straight": false, "out_mode": "out", "bounce": false,
+            "attract": { "enable": true, "rotateX": 600, "rotateY": 1200 } }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": {
+            "onhover": { "enable": true, "mode": "repulse" },
+            "onclick": { "enable": true, "mode": "push" },
+            "resize": true
+          },
+          "modes": {
+            "repulse": { "distance": 100, "duration": 0.4 },
+            "push": { "particles_nb": 4 }
+          }
+        },
+        "retina_detect": true
+      });
+    });
   </script>
-
 </body>
 </html>
